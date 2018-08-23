@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CFBBasicTableViewController.h
 //  CFB
 //
 //  Created by 周鑫 on 2018/8/20.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface CFBBasicTableViewController : UITableViewController
 
 @end
-
