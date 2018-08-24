@@ -76,7 +76,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?action=write-review",@"com.zx.CFB"];//替换为对应的APPID
+        NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://itunes.apple.com/app/id%@?action=write-review",@"1434038476"];//替换为对应的APPID
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
         
     }else if(indexPath.row == 1) {

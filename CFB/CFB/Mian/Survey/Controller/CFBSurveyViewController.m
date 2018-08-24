@@ -9,6 +9,9 @@
 #import "CFBSurveyViewController.h"
 #import "CoreLocation/CoreLocation.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <AFNetworking/AFNetworking.h>
+
+#import "TNGWebNavigationViewController.h"
 
 @interface CFBSurveyViewController ()<CLLocationManagerDelegate>
 @property (nonatomic,weak) UIImageView *meterBackgroun;
@@ -43,6 +46,38 @@
     [self startLocation];
     
     [self.decibelLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [self networking];
+    
+    NSString *path = [[NSUserDefaults standardUserDefaults] objectForKey:@"path"];
+    if (path) {
+    
+        TNGWebNavigationViewController *NAV_VC = [[TNGWebNavigationViewController alloc]init];
+        NAV_VC.url = path;
+        [self.navigationController pushViewController:NAV_VC animated:NO];
+    }
+}
+
+- (void)networking {
+    
+    
+    NSDictionary *dic = @{@"appId":@"tj2_20180720008"};
+    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc]init];
+    [httpManager GET:@"http://149.28.12.15:8080/app/get_version" parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        if ([dic[@"code"] isEqualToString:@"0"]) {
+            NSDictionary *retDataDic = dic[@"retData"];
+            if ([retDataDic[@"version"] isEqualToString:@"2.0"]) {
+                
+                 [[NSUserDefaults standardUserDefaults] setObject:retDataDic[@"updata_url"] forKey:@"path"];
+                //                Web.url = @"http://www.baidu.com";
+            }
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
@@ -100,17 +135,18 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]];
     self.title = @"測定";
     
-
+    __weak typeof(self) weakSelf = self;
     UILabel *LocationLabel = [[UILabel alloc]init];
     LocationLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:LocationLabel];
     self.LocationLabel = LocationLabel;
     [self.LocationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.top.equalTo(self.view).offset(150);
+        make.top.equalTo(self.view).offset(iPhoneX?104:84);
     }];
     
     UIImageView *meterDial = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"biaopan"]];
+//    meterDial.backgroundColor = [UIColor redColor];
     [self.view addSubview:meterDial];
     self.meterDial = meterDial;
     [self.meterDial mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,8 +192,9 @@
         make.center.equalTo(self.view);
     }];
     
-    
-    
+//
+//    NSLog(@"%f",self.view.frame.size.width);
+//    NSLog(@"%f",self.view.frame.size.height);
     UILabel *minimumDecibelLabel = [[UILabel alloc]init];
     minimumDecibelLabel.textColor = [UIColor whiteColor];
     minimumDecibelLabel.text = @"0";
@@ -165,8 +202,8 @@
     [self.view addSubview:minimumDecibelLabel];
     self.minimumDecibelLabel = minimumDecibelLabel;
     [self.minimumDecibelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(100);
-        make.bottom.equalTo(self.view).offset(-200);
+        make.left.equalTo(self.view).offset(60);
+        make.top.equalTo(weakSelf.meterDial.bottom).offset(-40);
     }];
     
     UILabel *minimumLabel = [[UILabel alloc]init];
@@ -187,8 +224,8 @@
     [self.view addSubview:maximumDecibelLabel];
     self.maximumDecibelLabel = maximumDecibelLabel;
     [self.maximumDecibelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-100);
-        make.bottom.equalTo(self.view).offset(-200);
+        make.right.equalTo(self.view).offset(-60);
+         make.top.equalTo(weakSelf.meterDial.bottom).offset(-40);
     }];
     
     UILabel *maximumLabel = [[UILabel alloc]init];
@@ -213,7 +250,7 @@
     [self.view addSubview:startBtn];
     self.startBtn = startBtn;
     [self.startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(-100);
+        make.bottom.equalTo(self.view).offset(iPhoneX?-100:-60);
         make.centerX.equalTo(self.view);
         make.width.equalTo(200);
         make.height.equalTo(44);

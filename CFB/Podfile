@@ -12,6 +12,7 @@ pod 'SDWebImage'
 pod 'JKCategories'
 pod 'DZNEmptyDataSet'
 pod 'SVProgressHUD'
+pod 'JPush'
 
 end
 

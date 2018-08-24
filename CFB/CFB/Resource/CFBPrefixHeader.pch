@@ -20,4 +20,8 @@
 #import <JKCategories/JKCategories.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
+
+
+#import "commonDefine.h"
+
 #endif /* CFBPrefixHeader_pch */
