@@ -22,6 +22,7 @@
 @property (nonatomic,weak) UILabel *minimumDecibelLabel;
 @property (nonatomic,weak) UILabel *maximumDecibelLabel;
 @property (nonatomic,weak) UIButton *startBtn;
+@property (nonatomic,weak) UILabel *identifierLabel;
 
 
 @property (nonatomic,weak) UILabel *LocationLabel;
@@ -137,6 +138,7 @@
     
     __weak typeof(self) weakSelf = self;
     UILabel *LocationLabel = [[UILabel alloc]init];
+    LocationLabel.text = @"定位中..";
     LocationLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:LocationLabel];
     self.LocationLabel = LocationLabel;
@@ -190,6 +192,19 @@
     self.decibelLabel = decibelLabel;
     [self.decibelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
+    }];
+    
+    
+    UILabel *identifierLabel = [[UILabel alloc]init];
+    identifierLabel.textColor = [UIColor whiteColor];
+    identifierLabel.text = @"测量中..";
+    identifierLabel.font = [UIFont systemFontOfSize:14];
+    identifierLabel.hidden = YES;
+    [self.view addSubview:identifierLabel];
+    self.identifierLabel = identifierLabel;
+    [self.identifierLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(decibelLabel.bottom).offset(10);
     }];
     
 //
@@ -325,6 +340,7 @@
         [recorder prepareToRecord];
         recorder.meteringEnabled = YES;
         [recorder record];
+        self.identifierLabel.hidden = NO;
         levelTimer = [NSTimer scheduledTimerWithTimeInterval: 1 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
     }
     else
@@ -339,6 +355,7 @@
     
     if (recorder.record) {
          [recorder stop];
+        self.identifierLabel.hidden = YES;
     }
     
     NSArray *historys = [[NSUserDefaults standardUserDefaults] objectForKey:@"historys"];
@@ -453,6 +470,9 @@
 //        NSString *subLocality = [address objectForKey:@"SubLocality"];
 //        NSString *street = [address objectForKey:@"Street"];
         self.LocationLabel.text = [NSString stringWithFormat:@"%@%@",placemark.subLocality,placemark.name];
+        if ([self.LocationLabel.text isEqualToString:@"(null)(null)"]) {
+            self.LocationLabel.text = @"未知";
+        }
         
     }];
     
