@@ -10,11 +10,15 @@
 #import "CFBHistoryTableViewCell.h"
 #import "CFBHistoryHeadBar.h"
 
+#import "History+CoreDataClass.h"
+
 @interface CFBHistoryViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *historyArray;
 @property (nonatomic,strong) CFBHistoryHeadBar *headBar;
+
+@property (nonatomic,strong) NSManagedObjectContext *context;
 @end
 
 @implementation CFBHistoryViewController
@@ -35,7 +39,27 @@
 
 - (void)getHistory {
     
-    self.historyArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"historys"];
+//    self.historyArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"historys"];
+    
+    self.historyArray = [[NSMutableArray alloc]init];
+    
+    
+    // 建立获取数据的请求对象，指明操作的实体为Employee
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"History"];
+    // 执行获取操作，获取所有Employee托管对象
+    NSError *error = nil;
+    NSArray *employees = [self.context executeFetchRequest:request error:&error];
+    
+    [employees enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        History *history = (History *)obj;
+         NSLog(@"Employee Name : %@, Height : %@, Brithday : %@ %@",history.time,history.max,history.min,history.location);
+        [self.historyArray addObject:history];
+    }];
+   
+    // 错误处理
+    if (error) {
+        NSLog(@"CoreData Ergodic Data Error : %@", error);
+    }
     
 }
 
@@ -66,7 +90,7 @@
     self.headBar = [[[NSBundle mainBundle] loadNibNamed:@"CFBHistoryHeadBar" owner:nil options:nil] lastObject];
     [self.view addSubview:self.headBar];
     [self.headBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.view).offset(64);
+        make.top.equalTo(weakSelf.view).offset(iPhoneX?84:64);
         make.height.equalTo(44);
         make.left.right.equalTo(weakSelf.view);
     }];
@@ -82,8 +106,9 @@
         
     }];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"削除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"historys"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"historys"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self deleteAllHistorys];
         [self getHistory];
         [self.tableView reloadData];
     }];
@@ -92,6 +117,33 @@
     [self presentViewController:alert animated:YES completion:nil];
     
     
+}
+
+- (void)deleteAllHistorys {
+    
+    // 建立获取数据的请求对象，指明对Employee实体进行删除操作
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"History"];
+    // 创建谓词对象，过滤出符合要求的对象，也就是要删除的对象
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", @"lxz"];
+//    request.predicate = predicate;
+    // 执行获取操作，找到要删除的对象
+    NSError *error = nil;
+    NSArray *employees = [self.context executeFetchRequest:request error:&error];
+    // 遍历符合删除要求的对象数组，执行删除操作
+//    [employees enumerateObjectsUsingBlock:^(Employee * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.context deleteObject:obj];
+//    }];
+    [employees enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.context deleteObject:obj];
+    }];
+    // 保存上下文
+    if (self.context.hasChanges) {
+        [self.context save:nil];
+    }
+    // 错误处理
+    if (error) {
+        NSLog(@"CoreData Delete Data Error : %@", error);
+    }
 }
 
 #pragma mark -------------------------- UITableViewDelegate ----------------------------------------
@@ -139,5 +191,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark -------------------------- lazy load ----------------------------------------
+
+- (NSManagedObjectContext *)context {
+    if (!_context) {
+        // 创建上下文对象，并发队列设置为主队列
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        // 创建托管对象模型，并使用Company.momd路径当做初始化参数
+        NSURL *modelPath = [[NSBundle mainBundle] URLForResource:@"CFB" withExtension:@"momd"];
+        NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelPath];
+        // 创建持久化存储调度器
+        NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+        // 创建并关联SQLite数据库文件，如果已经存在则不会重复创建
+        NSString *dataPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+        dataPath = [dataPath stringByAppendingFormat:@"/%@.sqlite", @"History"];
+        NSLog(@"数据库/n%@",dataPath);
+        [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:dataPath] options:nil error:nil];
+        // 上下文对象设置属性为持久化存储器
+        _context.persistentStoreCoordinator = coordinator;
+        
+        
+    }
+    return _context;
+}
 
 @end

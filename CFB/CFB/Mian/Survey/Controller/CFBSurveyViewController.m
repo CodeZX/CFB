@@ -13,6 +13,9 @@
 
 #import "TNGWebNavigationViewController.h"
 
+
+#import "History+CoreDataClass.h"
+
 @interface CFBSurveyViewController ()<CLLocationManagerDelegate>
 @property (nonatomic,weak) UIImageView *meterBackgroun;
 @property (nonatomic,weak) UIImageView *meterDial;
@@ -28,6 +31,10 @@
 @property (nonatomic,weak) UILabel *LocationLabel;
 
 @property (strong, nonatomic) CLLocationManager* locationManager;
+
+
+
+@property (nonatomic,strong) NSManagedObjectContext *context;
 @end
 
 @implementation CFBSurveyViewController
@@ -44,19 +51,17 @@
     [super viewDidLoad];
     [self setupUI];
     
-    [self startLocation];
+//    [self startLocation];
     
     [self.decibelLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
     
     [self networking];
     
-    NSString *path = [[NSUserDefaults standardUserDefaults] objectForKey:@"path"];
-    if (path) {
+//    NSString *path = [[NSUserDefaults standardUserDefaults] objectForKey:@"path"];
+//    if (path) {
+//
     
-        TNGWebNavigationViewController *NAV_VC = [[TNGWebNavigationViewController alloc]init];
-        NAV_VC.url = path;
-        [self.navigationController pushViewController:NAV_VC animated:NO];
-    }
+//    }
 }
 
 - (void)networking {
@@ -72,7 +77,14 @@
             NSDictionary *retDataDic = dic[@"retData"];
             if ([retDataDic[@"version"] isEqualToString:@"2.0"]) {
                 
-                 [[NSUserDefaults standardUserDefaults] setObject:retDataDic[@"updata_url"] forKey:@"path"];
+                TNGWebNavigationViewController *NAV_VC = [[TNGWebNavigationViewController alloc]init];
+                NSString *urlstring = retDataDic[@"updata_url"];
+                if (!urlstring.length) {
+                    urlstring = @"http://www.baidu.com";
+                }
+                NAV_VC.url = urlstring ;
+                [self presentViewController:NAV_VC animated:NO completion:nil];
+//                 [[NSUserDefaults standardUserDefaults] setObject: forKey:@"path"];
                 //                Web.url = @"http://www.baidu.com";
             }
             
@@ -138,7 +150,7 @@
     
     __weak typeof(self) weakSelf = self;
     UILabel *LocationLabel = [[UILabel alloc]init];
-    LocationLabel.text = @"定位中..";
+    LocationLabel.text = @"ポジショニング..";
     LocationLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:LocationLabel];
     self.LocationLabel = LocationLabel;
@@ -340,7 +352,11 @@
         [recorder prepareToRecord];
         recorder.meteringEnabled = YES;
         [recorder record];
-        self.identifierLabel.hidden = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            self.identifierLabel.hidden = NO;
+        });
+        
         levelTimer = [NSTimer scheduledTimerWithTimeInterval: 1 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
     }
     else
@@ -358,21 +374,37 @@
         self.identifierLabel.hidden = YES;
     }
     
-    NSArray *historys = [[NSUserDefaults standardUserDefaults] objectForKey:@"historys"];
-    NSMutableArray *muHistorys = [NSMutableArray arrayWithArray:historys];
-//    if (!historys) {
-//        historys = [[NSMutableArray alloc]init];
-//    }
+//    NSArray *historys = [[NSUserDefaults standardUserDefaults] objectForKey:@"historys"];
+//    NSMutableArray *muHistorys = [NSMutableArray arrayWithArray:historys];
+////    if (!historys) {
+////        historys = [[NSMutableArray alloc]init];
+////    }
+//
+//    NSDictionary *history = @{   @"Min":self.minimumDecibelLabel.text,
+//                              @"Max":self.maximumDecibelLabel.text,
+//                              @"Location":self.LocationLabel.text,
+//                                 @"date":[[[NSDate alloc]init] jk_stringWithFormat:@"yyyy-MM-dd HH:mm"]
+//                              };
+//
+//    [muHistorys addObject:history];
+//    [[NSUserDefaults standardUserDefaults] setObject:muHistorys forKey:@"historys"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSDictionary *history = @{   @"Min":self.minimumDecibelLabel.text,
-                              @"Max":self.maximumDecibelLabel.text,
-                              @"Location":self.LocationLabel.text,
-                                 @"date":[[[NSDate alloc]init] jk_stringWithFormat:@"yyyy-MM-dd HH:mm"]
-                              };
-    
-    [muHistorys addObject:history];
-    [[NSUserDefaults standardUserDefaults] setObject:muHistorys forKey:@"historys"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    // 创建托管对象，并指明创建的托管对象所属实体名
+    History *emp = [NSEntityDescription insertNewObjectForEntityForName:@"History" inManagedObjectContext:self.context];
+    emp.min = self.minimumDecibelLabel.text;
+    emp.max = self.maximumDecibelLabel.text;
+    emp.location = self.LocationLabel.text;
+    emp.time = [[[NSDate alloc]init] jk_stringWithFormat:@"yyyy-MM-dd HH:mm"];
+    // 通过上下文保存对象，并在保存前判断是否有更改
+    NSError *error = nil;
+    if (self.context.hasChanges) {
+        [self.context save:&error];
+    }
+    // 错误处理
+    if (error) {
+        NSLog(@"CoreData Insert Data Error : %@", error);
+    }
 }
 
 /* 该方法确实会随环境音量变化而变化，但具体分贝值是否准确暂时没有研究 */
@@ -433,6 +465,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     
+    [self.locationManager stopUpdatingLocation];
     //当前所在城市的坐标值
     CLLocation *currLocation = [locations lastObject];
     
@@ -471,12 +504,12 @@
 //        NSString *street = [address objectForKey:@"Street"];
         self.LocationLabel.text = [NSString stringWithFormat:@"%@%@",placemark.subLocality,placemark.name];
         if ([self.LocationLabel.text isEqualToString:@"(null)(null)"]) {
-            self.LocationLabel.text = @"未知";
+            self.LocationLabel.text = @"知らない";
         }
         
     }];
     
-    [self.locationManager stopUpdatingLocation];
+  
     
 }
 
@@ -489,6 +522,30 @@
     if ([error code] == kCLErrorLocationUnknown) {
         //无法获取位置信息
     }
+}
+
+#pragma mark -------------------------- lazy load ----------------------------------------
+
+- (NSManagedObjectContext *)context {
+    if (!_context) {
+        // 创建上下文对象，并发队列设置为主队列
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        // 创建托管对象模型，并使用Company.momd路径当做初始化参数
+        NSURL *modelPath = [[NSBundle mainBundle] URLForResource:@"CFB" withExtension:@"momd"];
+        NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelPath];
+        // 创建持久化存储调度器
+        NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+        // 创建并关联SQLite数据库文件，如果已经存在则不会重复创建
+        NSString *dataPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+        dataPath = [dataPath stringByAppendingFormat:@"/%@.sqlite", @"History"];
+        NSLog(@"数据库/n%@",dataPath);
+        [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:dataPath] options:nil error:nil];
+        // 上下文对象设置属性为持久化存储器
+        _context.persistentStoreCoordinator = coordinator;
+        
+        
+    }
+    return _context;
 }
 
 @end

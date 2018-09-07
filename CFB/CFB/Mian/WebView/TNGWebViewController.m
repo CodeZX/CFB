@@ -384,7 +384,7 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
         // 允许在线播放
         Configuration.allowsInlineMediaPlayback = YES;
         // 允许可以与网页交互，选择视图
-        Configuration.selectionGranularity = YES;
+        Configuration.selectionGranularity = WKSelectionGranularityDynamic;
         // web内容处理池
         Configuration.processPool = [[WKProcessPool alloc] init];
         //自定义配置,一般用于 js调用oc方法(OC拦截URL中的数据做自定义操作)

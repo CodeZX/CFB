@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class History;
 @interface CFBHistoryTableViewCell : UITableViewCell
-@property (nonatomic,strong) NSDictionary *history;
+@property (nonatomic,strong) History *history;
 @end

@@ -45,6 +45,9 @@
 		3C7AA8C0212FEF5B00E2BDC7 /* TNGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B8212FEF5B00E2BDC7 /* TNGWebViewController.m */; };
 		3C7AA8C1212FEF5B00E2BDC7 /* UIImage+DSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B9212FEF5B00E2BDC7 /* UIImage+DSAdd.m */; };
 		3C7AA8C2212FEF5B00E2BDC7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA8BB212FEF5B00E2BDC7 /* back.png */; };
+		3CD78C272135537000B9EEAB /* CFB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CD78C252135537000B9EEAB /* CFB.xcdatamodeld */; };
+		3CD78C382135597000B9EEAB /* History+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD78C362135597000B9EEAB /* History+CoreDataClass.m */; };
+		3CD78C392135597000B9EEAB /* History+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD78C372135597000B9EEAB /* History+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +109,11 @@
 		3C7AA8B9212FEF5B00E2BDC7 /* UIImage+DSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSAdd.m"; sourceTree = "<group>"; };
 		3C7AA8BA212FEF5B00E2BDC7 /* TNGWebNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNGWebNavigationViewController.h; sourceTree = "<group>"; };
 		3C7AA8BB212FEF5B00E2BDC7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		3CD78C262135537000B9EEAB /* CFB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CFB.xcdatamodel; sourceTree = "<group>"; };
+		3CD78C342135597000B9EEAB /* History+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "History+CoreDataProperties.h"; sourceTree = "<group>"; };
+		3CD78C352135597000B9EEAB /* History+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "History+CoreDataClass.h"; sourceTree = "<group>"; };
+		3CD78C362135597000B9EEAB /* History+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "History+CoreDataClass.m"; sourceTree = "<group>"; };
+		3CD78C372135597000B9EEAB /* History+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "History+CoreDataProperties.m"; sourceTree = "<group>"; };
 		CA39B398BDB61B0B5396244F /* Pods-CFB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CFB/Pods-CFB.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +198,7 @@
 		3C10096A212A978600940BFD /* Mian */ = {
 			isa = PBXGroup;
 			children = (
+				3CD78C1221353A4100B9EEAB /* CocoaData */,
 				3C7AA8B0212FEF5B00E2BDC7 /* WebView */,
 				3C10097B212A9E6900940BFD /* Setting */,
 				3C10097A212A9E5000940BFD /* Survey */,
@@ -311,6 +320,18 @@
 				3C7AA8BB212FEF5B00E2BDC7 /* back.png */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		3CD78C1221353A4100B9EEAB /* CocoaData */ = {
+			isa = PBXGroup;
+			children = (
+				3CD78C342135597000B9EEAB /* History+CoreDataProperties.h */,
+				3CD78C352135597000B9EEAB /* History+CoreDataClass.h */,
+				3CD78C362135597000B9EEAB /* History+CoreDataClass.m */,
+				3CD78C372135597000B9EEAB /* History+CoreDataProperties.m */,
+				3CD78C252135537000B9EEAB /* CFB.xcdatamodeld */,
+			);
+			path = CocoaData;
 			sourceTree = "<group>";
 		};
 		9EC37EA63703921A6B0522D6 /* Pods */ = {
@@ -473,6 +494,8 @@
 				3C7AA8C0212FEF5B00E2BDC7 /* TNGWebViewController.m in Sources */,
 				3C7AA864212BDE7500E2BDC7 /* CFBHistoryViewController.m in Sources */,
 				3C7AA88F212E679000E2BDC7 /* CFBHistoryTableViewCell.m in Sources */,
+				3CD78C392135597000B9EEAB /* History+CoreDataProperties.m in Sources */,
+				3CD78C382135597000B9EEAB /* History+CoreDataClass.m in Sources */,
 				3C7AA8C1212FEF5B00E2BDC7 /* UIImage+DSAdd.m in Sources */,
 				3C7AA861212BDE2A00E2BDC7 /* CFBSettingViewController.m in Sources */,
 				3C7AA8BF212FEF5B00E2BDC7 /* TNGURLFailture.m in Sources */,
@@ -480,6 +503,7 @@
 				3C100954212A964A00940BFD /* AppDelegate.m in Sources */,
 				3C10096F212A980B00940BFD /* CFBBasicViewController.m in Sources */,
 				3C100975212A988100940BFD /* CFBBasicTabBarController.m in Sources */,
+				3CD78C272135537000B9EEAB /* CFB.xcdatamodeld in Sources */,
 				3C7AA867212BE1B200E2BDC7 /* CFBBasicNavigationController.m in Sources */,
 				3C100972212A982300940BFD /* CFBBasicTableViewController.m in Sources */,
 			);
@@ -681,6 +705,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3CD78C252135537000B9EEAB /* CFB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3CD78C262135537000B9EEAB /* CFB.xcdatamodel */,
+			);
+			currentVersion = 3CD78C262135537000B9EEAB /* CFB.xcdatamodel */;
+			path = CFB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3C100947212A964A00940BFD /* Project object */;
 }

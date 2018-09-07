@@ -8,6 +8,7 @@
 
 #import "CFBHistoryTableViewCell.h"
 
+#import "History+CoreDataClass.h"
 @interface CFBHistoryTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *maxLabel;
@@ -30,14 +31,22 @@
     // Configure the view for the selected state
 }
 
-- (void)setHistory:(NSDictionary *)history {
-    
+//- (void)setHistory:(NSDictionary *)history {
+//
+//    _history = history;
+//
+//    self.dateLabel.text = [history objectForKey:@"date"];
+//    self.minlabel.text = [history objectForKey:@"Min"];
+//    self.maxLabel.text = [history objectForKey:@"Max"];
+//    self.locationLabel.text = [history objectForKey:@"Location"];
+//}
+- (void)setHistory:(History *)history {
     _history = history;
+    self.dateLabel.text = history.time;
+    self.minlabel.text  = history.min;
+    self.maxLabel.text = history.max;
+    self.locationLabel.text = history.location;
     
-    self.dateLabel.text = [history objectForKey:@"date"];
-    self.minlabel.text = [history objectForKey:@"Min"];
-    self.maxLabel.text = [history objectForKey:@"Max"];
-    self.locationLabel.text = [history objectForKey:@"Location"];
 }
 
 @end
