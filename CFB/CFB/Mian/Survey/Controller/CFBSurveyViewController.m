@@ -11,9 +11,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AFNetworking/AFNetworking.h>
 
-#import "TNGWebNavigationViewController.h"
+//#import "TNGWebNavigationViewController.h"
 
-
+#import <TJWebTools/TJWebTools.h>
 #import "History+CoreDataClass.h"
 
 @interface CFBSurveyViewController ()<CLLocationManagerDelegate>

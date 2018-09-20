@@ -16,6 +16,8 @@
 		3C10096F212A980B00940BFD /* CFBBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C10096E212A980B00940BFD /* CFBBasicViewController.m */; };
 		3C100972212A982300940BFD /* CFBBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C100971212A982300940BFD /* CFBBasicTableViewController.m */; };
 		3C100975212A988100940BFD /* CFBBasicTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C100974212A988100940BFD /* CFBBasicTabBarController.m */; };
+		3C5109D9215368E9008B09F3 /* TJWebTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5109D8215368E9008B09F3 /* TJWebTools.framework */; };
+		3C5109DB215368F0008B09F3 /* TJWebToolsImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C5109DA215368F0008B09F3 /* TJWebToolsImage.bundle */; };
 		3C7AA85E212BDD6D00E2BDC7 /* CFBSurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA85D212BDD6D00E2BDC7 /* CFBSurveyViewController.m */; };
 		3C7AA861212BDE2A00E2BDC7 /* CFBSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA860212BDE2A00E2BDC7 /* CFBSettingViewController.m */; };
 		3C7AA864212BDE7500E2BDC7 /* CFBHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA863212BDE7500E2BDC7 /* CFBHistoryViewController.m */; };
@@ -38,13 +40,6 @@
 		3C7AA89B212E99C200E2BDC7 /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA898212E99C200E2BDC7 /* bg1.png */; };
 		3C7AA89D212EA60C00E2BDC7 /* 删 除.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA89C212EA60C00E2BDC7 /* 删 除.png */; };
 		3C7AA89F212EA6B600E2BDC7 /* 删 除-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA89E212EA6B500E2BDC7 /* 删 除-2.png */; };
-		3C7AA8BC212FEF5B00E2BDC7 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B1212FEF5B00E2BDC7 /* back@2x.png */; };
-		3C7AA8BD212FEF5B00E2BDC7 /* back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B3212FEF5B00E2BDC7 /* back@3x.png */; };
-		3C7AA8BE212FEF5B00E2BDC7 /* TNGWebNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B6212FEF5B00E2BDC7 /* TNGWebNavigationViewController.m */; };
-		3C7AA8BF212FEF5B00E2BDC7 /* TNGURLFailture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B7212FEF5B00E2BDC7 /* TNGURLFailture.m */; };
-		3C7AA8C0212FEF5B00E2BDC7 /* TNGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B8212FEF5B00E2BDC7 /* TNGWebViewController.m */; };
-		3C7AA8C1212FEF5B00E2BDC7 /* UIImage+DSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AA8B9212FEF5B00E2BDC7 /* UIImage+DSAdd.m */; };
-		3C7AA8C2212FEF5B00E2BDC7 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AA8BB212FEF5B00E2BDC7 /* back.png */; };
 		3CD78C272135537000B9EEAB /* CFB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CD78C252135537000B9EEAB /* CFB.xcdatamodeld */; };
 		3CD78C382135597000B9EEAB /* History+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD78C362135597000B9EEAB /* History+CoreDataClass.m */; };
 		3CD78C392135597000B9EEAB /* History+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD78C372135597000B9EEAB /* History+CoreDataProperties.m */; };
@@ -69,6 +64,8 @@
 		3C100974212A988100940BFD /* CFBBasicTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFBBasicTabBarController.m; sourceTree = "<group>"; };
 		3C100976212A98A700940BFD /* CFBPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFBPrefixHeader.pch; sourceTree = "<group>"; };
 		3C100977212A990F00940BFD /* commonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonDefine.h; sourceTree = "<group>"; };
+		3C5109D8215368E9008B09F3 /* TJWebTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TJWebTools.framework; sourceTree = "<group>"; };
+		3C5109DA215368F0008B09F3 /* TJWebToolsImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TJWebToolsImage.bundle; sourceTree = "<group>"; };
 		3C7AA85C212BDD6D00E2BDC7 /* CFBSurveyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFBSurveyViewController.h; sourceTree = "<group>"; };
 		3C7AA85D212BDD6D00E2BDC7 /* CFBSurveyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFBSurveyViewController.m; sourceTree = "<group>"; };
 		3C7AA85F212BDE2A00E2BDC7 /* CFBSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFBSettingViewController.h; sourceTree = "<group>"; };
@@ -98,17 +95,6 @@
 		3C7AA89C212EA60C00E2BDC7 /* 删 除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删 除.png"; sourceTree = "<group>"; };
 		3C7AA89E212EA6B500E2BDC7 /* 删 除-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删 除-2.png"; sourceTree = "<group>"; };
 		3C7AA8AF212FEC6700E2BDC7 /* CFB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CFB.entitlements; sourceTree = "<group>"; };
-		3C7AA8B1212FEF5B00E2BDC7 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
-		3C7AA8B2212FEF5B00E2BDC7 /* TNGURLFailture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNGURLFailture.h; sourceTree = "<group>"; };
-		3C7AA8B3212FEF5B00E2BDC7 /* back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@3x.png"; sourceTree = "<group>"; };
-		3C7AA8B4212FEF5B00E2BDC7 /* UIImage+DSAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DSAdd.h"; sourceTree = "<group>"; };
-		3C7AA8B5212FEF5B00E2BDC7 /* TNGWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNGWebViewController.h; sourceTree = "<group>"; };
-		3C7AA8B6212FEF5B00E2BDC7 /* TNGWebNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TNGWebNavigationViewController.m; sourceTree = "<group>"; };
-		3C7AA8B7212FEF5B00E2BDC7 /* TNGURLFailture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TNGURLFailture.m; sourceTree = "<group>"; };
-		3C7AA8B8212FEF5B00E2BDC7 /* TNGWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TNGWebViewController.m; sourceTree = "<group>"; };
-		3C7AA8B9212FEF5B00E2BDC7 /* UIImage+DSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSAdd.m"; sourceTree = "<group>"; };
-		3C7AA8BA212FEF5B00E2BDC7 /* TNGWebNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNGWebNavigationViewController.h; sourceTree = "<group>"; };
-		3C7AA8BB212FEF5B00E2BDC7 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		3CD78C262135537000B9EEAB /* CFB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CFB.xcdatamodel; sourceTree = "<group>"; };
 		3CD78C342135597000B9EEAB /* History+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "History+CoreDataProperties.h"; sourceTree = "<group>"; };
 		3CD78C352135597000B9EEAB /* History+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "History+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -123,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B54F20E5C234FE3FD0D58EE /* libPods-CFB.a in Frameworks */,
+				3C5109D9215368E9008B09F3 /* TJWebTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +166,8 @@
 		3C100969212A972200940BFD /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3C5109DA215368F0008B09F3 /* TJWebToolsImage.bundle */,
+				3C5109D8215368E9008B09F3 /* TJWebTools.framework */,
 				3C7AA89E212EA6B500E2BDC7 /* 删 除-2.png */,
 				3C7AA89C212EA60C00E2BDC7 /* 删 除.png */,
 				3C100958212A964A00940BFD /* Main.storyboard */,
@@ -199,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				3CD78C1221353A4100B9EEAB /* CocoaData */,
-				3C7AA8B0212FEF5B00E2BDC7 /* WebView */,
 				3C10097B212A9E6900940BFD /* Setting */,
 				3C10097A212A9E5000940BFD /* Survey */,
 				3C100978212A9D7E00940BFD /* History */,
@@ -304,24 +292,6 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
-		3C7AA8B0212FEF5B00E2BDC7 /* WebView */ = {
-			isa = PBXGroup;
-			children = (
-				3C7AA8B1212FEF5B00E2BDC7 /* back@2x.png */,
-				3C7AA8B2212FEF5B00E2BDC7 /* TNGURLFailture.h */,
-				3C7AA8B3212FEF5B00E2BDC7 /* back@3x.png */,
-				3C7AA8B4212FEF5B00E2BDC7 /* UIImage+DSAdd.h */,
-				3C7AA8B5212FEF5B00E2BDC7 /* TNGWebViewController.h */,
-				3C7AA8B6212FEF5B00E2BDC7 /* TNGWebNavigationViewController.m */,
-				3C7AA8B7212FEF5B00E2BDC7 /* TNGURLFailture.m */,
-				3C7AA8B8212FEF5B00E2BDC7 /* TNGWebViewController.m */,
-				3C7AA8B9212FEF5B00E2BDC7 /* UIImage+DSAdd.m */,
-				3C7AA8BA212FEF5B00E2BDC7 /* TNGWebNavigationViewController.h */,
-				3C7AA8BB212FEF5B00E2BDC7 /* back.png */,
-			);
-			path = WebView;
-			sourceTree = "<group>";
-		};
 		3CD78C1221353A4100B9EEAB /* CocoaData */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,16 +394,14 @@
 				3C10095F212A964B00940BFD /* LaunchScreen.storyboard in Resources */,
 				3C7AA879212BE75A00E2BDC7 /* bg2@3x.png in Resources */,
 				3C7AA890212E679000E2BDC7 /* CFBHistoryTableViewCell.xib in Resources */,
-				3C7AA8BD212FEF5B00E2BDC7 /* back@3x.png in Resources */,
 				3C10095C212A964B00940BFD /* Assets.xcassets in Resources */,
 				3C7AA899212E99C200E2BDC7 /* bg1@3x.png in Resources */,
 				3C7AA877212BE75A00E2BDC7 /* zhizhen@3x.png in Resources */,
 				3C7AA884212BF0E200E2BDC7 /* biaopan.png in Resources */,
 				3C7AA87B212BE75A00E2BDC7 /* zhizhen@2x.png in Resources */,
 				3C7AA876212BE75A00E2BDC7 /* zhizhen.png in Resources */,
-				3C7AA8C2212FEF5B00E2BDC7 /* back.png in Resources */,
-				3C7AA8BC212FEF5B00E2BDC7 /* back@2x.png in Resources */,
 				3C10095A212A964A00940BFD /* Main.storyboard in Resources */,
+				3C5109DB215368F0008B09F3 /* TJWebToolsImage.bundle in Resources */,
 				3C7AA89A212E99C200E2BDC7 /* bg1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,15 +458,11 @@
 			files = (
 				3C7AA893212E93D000E2BDC7 /* CFBHistoryHeadBar.m in Sources */,
 				3C7AA85E212BDD6D00E2BDC7 /* CFBSurveyViewController.m in Sources */,
-				3C7AA8BE212FEF5B00E2BDC7 /* TNGWebNavigationViewController.m in Sources */,
-				3C7AA8C0212FEF5B00E2BDC7 /* TNGWebViewController.m in Sources */,
 				3C7AA864212BDE7500E2BDC7 /* CFBHistoryViewController.m in Sources */,
 				3C7AA88F212E679000E2BDC7 /* CFBHistoryTableViewCell.m in Sources */,
 				3CD78C392135597000B9EEAB /* History+CoreDataProperties.m in Sources */,
 				3CD78C382135597000B9EEAB /* History+CoreDataClass.m in Sources */,
-				3C7AA8C1212FEF5B00E2BDC7 /* UIImage+DSAdd.m in Sources */,
 				3C7AA861212BDE2A00E2BDC7 /* CFBSettingViewController.m in Sources */,
-				3C7AA8BF212FEF5B00E2BDC7 /* TNGURLFailture.m in Sources */,
 				3C100962212A964B00940BFD /* main.m in Sources */,
 				3C100954212A964A00940BFD /* AppDelegate.m in Sources */,
 				3C10096F212A980B00940BFD /* CFBBasicViewController.m in Sources */,
@@ -650,6 +614,11 @@
 				CODE_SIGN_ENTITLEMENTS = CFB/CFB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G8L2R54WQQ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CFB/Resource",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CFB/Resource/CFBPrefixHeader.pch";
 				INFOPLIST_FILE = CFB/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -671,6 +640,11 @@
 				CODE_SIGN_ENTITLEMENTS = CFB/CFB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G8L2R54WQQ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CFB/Resource",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CFB/Resource/CFBPrefixHeader.pch";
 				INFOPLIST_FILE = CFB/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
