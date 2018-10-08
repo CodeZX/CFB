@@ -10,10 +10,6 @@
 #import "CoreLocation/CoreLocation.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AFNetworking/AFNetworking.h>
-
-//#import "TNGWebNavigationViewController.h"
-
-#import <TJWebTools/TJWebTools.h>
 #import "History+CoreDataClass.h"
 
 @interface CFBSurveyViewController ()<CLLocationManagerDelegate>
@@ -67,30 +63,30 @@
 - (void)networking {
     
     
-    NSDictionary *dic = @{@"appId":@"tj2_20180720008"};
-    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc]init];
-    [httpManager GET:@"http://149.28.12.15:8080/app/get_version" parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *dic = (NSDictionary *)responseObject;
-        if ([dic[@"code"] isEqualToString:@"0"]) {
-            NSDictionary *retDataDic = dic[@"retData"];
-            if ([retDataDic[@"version"] isEqualToString:@"2.0"]) {
-                
-                TNGWebNavigationViewController *NAV_VC = [[TNGWebNavigationViewController alloc]init];
-                NSString *urlstring = retDataDic[@"updata_url"];
-                if (!urlstring.length) {
-                    urlstring = @"http://www.baidu.com";
-                }
-                NAV_VC.url = urlstring ;
-                [self presentViewController:NAV_VC animated:NO completion:nil];
-//                 [[NSUserDefaults standardUserDefaults] setObject: forKey:@"path"];
-                //                Web.url = @"http://www.baidu.com";
-            }
-            
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    }];
+//    NSDictionary *dic = @{@"appId":@"tj2_20180720008"};
+//    AFHTTPSessionManager *httpManager = [[AFHTTPSessionManager alloc]init];
+//    [httpManager GET:@"http://149.28.12.15:8080/app/get_version" parameters:dic progress:^(NSProgress * _Nonnull downloadProgress) {
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSDictionary *dic = (NSDictionary *)responseObject;
+//        if ([dic[@"code"] isEqualToString:@"0"]) {
+//            NSDictionary *retDataDic = dic[@"retData"];
+//            if ([retDataDic[@"version"] isEqualToString:@"2.0"]) {
+//
+//                TNGWebNavigationViewController *NAV_VC = [[TNGWebNavigationViewController alloc]init];
+//                NSString *urlstring = retDataDic[@"updata_url"];
+//                if (!urlstring.length) {
+//                    urlstring = @"http://www.baidu.com";
+//                }
+//                NAV_VC.url = urlstring ;
+//                [self presentViewController:NAV_VC animated:NO completion:nil];
+////                 [[NSUserDefaults standardUserDefaults] setObject: forKey:@"path"];
+//                //                Web.url = @"http://www.baidu.com";
+//            }
+//
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//    }];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
@@ -159,7 +155,7 @@
         make.top.equalTo(self.view).offset(iPhoneX?104:84);
     }];
     
-    UIImageView *meterDial = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"biaopan"]];
+    UIImageView *meterDial = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"组1"]];
 //    meterDial.backgroundColor = [UIColor redColor];
     [self.view addSubview:meterDial];
     self.meterDial = meterDial;
